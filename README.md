@@ -6,7 +6,7 @@ A little "ransomware-like" simulator for Windows that will rename .TXT files to 
 Cashcat from: http://cashcats.biz/
 
 ## VERY IMPORTANT NOTE
-THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION OF RANSOMWARE! ALL IT DOES IS RENAME files with the extension of .TXT to .LOCKY to test file activity monitoring tools.
+THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION OF RANSOMWARE! ALL IT DOES IS RENAME files with the extension of .TXT to .LOCKY to test file activity monitoring tools. Nothing gets Encrypted!
 
 ## Usage
 1. Build/Download CashCat.exe 
