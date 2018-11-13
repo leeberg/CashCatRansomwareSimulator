@@ -26,6 +26,7 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 + Requires at least .NET 4.6.1
 
 ## Todo
++ UNC path support
 + Add Webhook Support for Canary like feature
 + Make the UI more ransomware-ey
 + Enable Optional Easter Egg Cash Cat Mode
