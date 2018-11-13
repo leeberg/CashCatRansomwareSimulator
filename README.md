@@ -1,6 +1,6 @@
 Cashcat : The "Ransomware" Simulator
 ==================
-A little "ransomware-like" simulator for Windows that will rename .TXT files to .LOCKY to simulate ransomware behavior for testing various file monitoring tools and response systems.
+A little "ransomware-like" simulator for Windows that will rename .TXT files to .LOCKY to simulate ransomware behavior for demos and testing various file monitoring tools and response systems. 
 
 ![](./img/cashcat.png)  
 Cashcat from: http://cashcats.biz/
