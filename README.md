@@ -12,7 +12,7 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 1. Build/Download CashCat.exe 
 2. Place CashCat.exe in a directory with some .txt files in the same directory.
 3. Run Cashcast.exe.
-4. All .TXT files located in the same directory as Cashcat.exe will be renamed to .Locky - a common ransomware extension
+4. All .TXT files located in the same directory as Cashcat.exe will be renamed to .Locky - a common ransomware extension. No files are ACTUALLY encrytped - they are simply renamed.
 5. Enter the code 123456789 to rename all .LOCKY files to .TXT (this effectively UNLOCKS your files / resets your demo)
 
 ## UI
