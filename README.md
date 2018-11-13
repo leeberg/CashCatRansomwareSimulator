@@ -24,3 +24,8 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 ## Requirements
 + Tested on Windows 7, 10, Server 2012R2, 2016+ 
 + Requires at least .NET 4.6.1
+
+## Todo
++ Add Webhook Support for Canary like feature
++ Make the UI more ransomware-ey
++ Enable Optional Easter Egg Cash Cat Mode
