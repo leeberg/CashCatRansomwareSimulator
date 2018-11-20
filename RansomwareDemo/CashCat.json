@@ -1,0 +1,5 @@
+{
+    "webHookEnabled":  0,
+    "webHookURI":  "https://cashcat.azurewebsites.net/api/HttpTrigger1?code=6aaOKtlijB7EzwRMhTjGGlOD/iGDDmM3H9bUC7ZXzBiQ0VtyUk5/aA==",
+    "catMode":  0
+}
