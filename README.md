@@ -39,13 +39,13 @@ CashCat has some basic configuration options! Simply place a json file named "Ca
 
 ```
 **Options**
-* webHookEnabled do you want to execute a POST webhook on execution?
+* webHookEnabled - instructs CashCat to execute a GET webhook execution on open
 * webHookURI - Webhook URI to be called
-* catMode - "Secret" cashcat mode!
+* catMode - "Secret" **CashCat** mode!
 
 
 ## Todo
 + ~~UNC path support (works on my machine)
 + ~~Add Webhook Support for Canary like feature
-+ Make the UI more ransomware-ey
 + ~~Enable Optional Easter Egg Cash Cat Mode
++ Make the UI more ransomware-ey
