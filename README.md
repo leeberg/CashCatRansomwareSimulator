@@ -45,7 +45,7 @@ CashCat has some basic configuration options! Simply place a json file named "Ca
 
 
 ## Todo
-+ ~~UNC path support (works on my machine)
-+ ~~Add Webhook Support for Canary like feature
-+ ~~Enable Optional Easter Egg Cash Cat Mode
++ ~~UNC path support (works on my machine)~~
++ ~~Add Webhook Support for Canary like feature~~
++ ~~Enable Optional Easter Egg Cash Cat Mode~~
 + Make the UI more ransomware-ey
