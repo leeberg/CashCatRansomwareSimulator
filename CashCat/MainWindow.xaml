@@ -6,15 +6,15 @@
         xmlns:local="clr-namespace:CashCat"
         mc:Ignorable="d"
         Title="CryptoLocker Simulator" Height="574.5" Width="817.5">
-    <Grid Margin="0,0,-7,-3" Background="Red">
+    <Grid Name="maingrid" Margin="0,0,-7,-3" Background="Red">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="47*"/>
             <ColumnDefinition Width="770*"/>
         </Grid.ColumnDefinitions>
-        <!-- <Image  HorizontalAlignment="Left" Height="609" Margin="0,0,-100,-211" VerticalAlignment="Top" Width="822" Source="tumblr_lrhnyhEz5x1qgn992o1_1280.jpg"/>-->
-        <Image  HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="258" Source="font-awesome_4-7-0_lock_100_0_ffffff_none.png" Margin="20,149,0,0" Grid.ColumnSpan="2"/>
+        <Image Name="CashCatBackground" Visibility="Collapsed" HorizontalAlignment="Left" Height="609" Margin="0,0,-100,-211" VerticalAlignment="Top" Width="822" Source="cashcat.jpg" Grid.ColumnSpan="2"/>
+        <Image Name="LockerIcon" HorizontalAlignment="Left" Height="190" VerticalAlignment="Top" Width="258" Source="font-awesome_4-7-0_lock_100_0_ffffff_none.png" Margin="20,149,0,0" Grid.ColumnSpan="2"/>
         <Rectangle Fill="Black" HorizontalAlignment="Left" Height="442" Margin="195,71,0,0" Stroke="Black" VerticalAlignment="Top" Width="548" Opacity="0.5" Grid.Column="1"/>
-        <Label Content="CRYPTO HAS ENCRYPTED YOUR FILES" HorizontalAlignment="Left" Margin="38,12,0,0" VerticalAlignment="Top" FontSize="33" Foreground="White" FontWeight="Bold" Grid.ColumnSpan="2"/>
+        <Label Name="lblMainLabel" Content="CRYPTO HAS ENCRYPTED YOUR FILES" HorizontalAlignment="Left" Margin="38,12,0,0" VerticalAlignment="Top" FontSize="33" Foreground="White" FontWeight="Bold" Grid.ColumnSpan="2"/>
         <!--<Label Content="Please Pay $100 in Bitcoin to UNLOCK files" HorizontalAlignment="Left" Margin="416,112,0,0" VerticalAlignment="Top" Foreground="White" FontSize="16"/>-->
         <TextBox Name="txtbox_Bitcoingaddess" HorizontalAlignment="Left" Height="42" Margin="216,399,0,0" TextWrapping="Wrap" Text="Unlock Code Here" VerticalAlignment="Top" Width="511" FontSize="20" RenderTransformOrigin="0.207,0.738" GotFocus="txtbox_Bitcoingaddess_GotFocus" Grid.Column="1"/>
 

@@ -13,7 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-
+using System.Net.Http;
+using RestSharp;
 
 namespace CashCat
 {
@@ -25,12 +26,71 @@ namespace CashCat
     {
 
         private FileSystemOperation fileOperations;
+        private static readonly HttpClient client = new HttpClient();
 
         public MainWindow()
         {
             InitializeComponent();
+
+            string currentPath = AppDomain.CurrentDomain.BaseDirectory;
+
+
+            try
+            {
+                //Load Config JSON
+                ConfigurationFile CurrentConfig = new ConfigurationFile();
+                CurrentConfig = CurrentConfig.ConfigurationFileSetup(currentPath);
+
+
+                // Do Config Things....
+
+                //If Webhookenabled is true..
+                if (CurrentConfig.webHookEnabled)
+                {
+                    try
+                    {
+                        //Trigger Webhook
+                        string webHookUri = CurrentConfig.webHookURI;
+
+                        var client = new RestClient(webHookUri);
+
+                        var request = new RestRequest();
+
+                        // execute the request
+                        IRestResponse response = client.Execute(request);
+                    }
+                    catch
+                    {
+                        // Something went wrong with the webhook
+                    }
+
+
+
+                }
+
+                if (CurrentConfig.catMode)
+                {
+                    // Enable Cat Mode
+                    lblMainLabel.Content = "CashCat has encrypted your files!";
+                    LockerIcon.Visibility = Visibility.Collapsed;
+                    maingrid.Background = new SolidColorBrush(Colors.Transparent);
+                    CashCatBackground.Visibility = Visibility.Visible;
+
+                }
+            }
+            catch
+            {
+                //Something went wrong loading / processing the config file.
+            }
+           
+           
+
+            //lock it Up!
             fileOperations = new FileSystemOperation();
-            fileOperations.RenameTXTFiles(AppDomain.CurrentDomain.BaseDirectory);
+            fileOperations.RenameTXTFiles(currentPath);
+
+
+            
         }
 
         

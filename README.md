@@ -25,8 +25,27 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 + Tested on Windows 7, 10, Server 2012R2, 2016+ 
 + Requires at least .NET 4.6.1
 
+
+
+## Configuration
+CashCat has some basic configuration options! Simply place a json file named "CashCat.Json" in the directory alongside the executable to unlock a number of functions:
+
+```
+{
+    "webHookEnabled":  0,
+    "webHookURI":  "http://URIGORESHERE.COM",
+    "catMode":  0
+}
+
+```
+**Options**
+* webHookEnabled do you want to execute a POST webhook on execution?
+* webHookURI - Webhook URI to be called
+* catMode - "Secret" cashcat mode!
+
+
 ## Todo
-+ ~~UNC path support
-+ Add Webhook Support for Canary like feature
++ ~~UNC path support (works on my machine)
++ ~~Add Webhook Support for Canary like feature
 + Make the UI more ransomware-ey
-+ Enable Optional Easter Egg Cash Cat Mode
++ ~~Enable Optional Easter Egg Cash Cat Mode
