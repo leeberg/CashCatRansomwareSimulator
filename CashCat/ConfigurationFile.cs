@@ -20,14 +20,23 @@ namespace CashCat
         {
             string jsonPath = path + "\\CashCat.json";
             // read JSON directly from a file
-            using (StreamReader file = File.OpenText(jsonPath))
+            try
             {
-                string json = file.ReadToEnd();
+                using (StreamReader file = File.OpenText(jsonPath))
+                {
+                    string json = file.ReadToEnd();
 
-                ConfigurationFile CurrentConfig = JsonConvert.DeserializeObject<ConfigurationFile>(json);
+                    ConfigurationFile CurrentConfig = JsonConvert.DeserializeObject<ConfigurationFile>(json);
 
-                return CurrentConfig;
+                    return CurrentConfig;
 
+                }
+
+            }
+            catch
+            {
+                Console.WriteLine("Error Loading JSON Config");
+                return null;
             }
 
 
