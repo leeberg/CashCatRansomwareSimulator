@@ -115,7 +115,7 @@ namespace CashCat
             fileOperations.WriteLog("Starting File Rename Operations!");
             //lock it Up!
 
-           
+            //TODO Clean up
             Dispatcher.Invoke(new Action(() => {
                 SetIconRotation(LockerIcon, 0);
                 lblLockingFile.Content = "Scanning for Files";

