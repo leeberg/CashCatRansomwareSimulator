@@ -5,6 +5,9 @@ A little "ransomware-like" simulator for Windows that will rename .TXT files to 
 ![](./img/cashcat.png)  
 Cashcat from: http://cashcats.biz/
 
+## Download
+Visit the releases section on this repository: https://github.com/leeberg/CashCatRansomwareSimulator/releases
+
 ## VERY IMPORTANT NOTE
 THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION OF RANSOMWARE! ALL IT DOES IS RENAME files with the extension of .TXT to .LOCKY to test file activity monitoring tools. Nothing gets Encrypted!
 
@@ -24,8 +27,6 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 ## Requirements
 + Tested on Windows 7, 10, Server 2012R2, 2016+ 
 + Requires at least .NET 4.6.1
-
-
 
 ## Configuration
 CashCat has some basic configuration options! Simply place a json file named "CashCat.Json" in the directory alongside the executable to unlock a number of functions:
