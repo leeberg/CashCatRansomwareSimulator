@@ -22,7 +22,7 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 ![](./img/CryptoLocker_Simulator.png)
 
 ## Demo
-![](./img/cashcatdemo.gif)
+![](./img/cashcatdemo13.gif)
 
 ## Requirements
 + Tested on Windows 7, 10, Server 2012R2, 2016+ 
