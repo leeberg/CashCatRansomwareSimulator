@@ -15,7 +15,6 @@ namespace CashCat
         /// </summary>
         /// 
 
-        EncryptionOperation FileEncrypter = new EncryptionOperation();
 
         public void WriteLog(string logMessage)
         {
@@ -98,7 +97,6 @@ namespace CashCat
             try
             {
                 System.IO.File.Move(file.Name, newfilename);
-                //FileEncrypter.EncryptFileRSA(newfilefullname);
             }
             catch
             {
@@ -122,7 +120,6 @@ namespace CashCat
                 try
                 {
                     System.IO.File.Move(file.Name, newfilename);
-                    //FileEncrypter.EncryptFileRSA(newfilefullname);
                 }
                 catch
                 {
@@ -141,8 +138,6 @@ namespace CashCat
             try
             {
                 System.IO.File.Move(file.Name, newfilename);
-                //FileEncrypter.DecryptFileRSA(newfilefullname);
-
             }
             catch
             {
@@ -163,8 +158,6 @@ namespace CashCat
                 try
                 {
                     System.IO.File.Move(file.Name, newfilename);
-                    //FileEncrypter.DecryptFileRSA(newfilefullname);
-
                 }
                 catch
                 {
