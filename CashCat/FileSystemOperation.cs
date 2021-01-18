@@ -15,6 +15,8 @@ namespace CashCat
         /// </summary>
         /// 
 
+        private RansomFiles RandomwareFileList = new RansomFiles();
+
 
         public void WriteLog(string logMessage)
         {
@@ -78,6 +80,29 @@ namespace CashCat
             return Files;
         }
 
+        public List<FileInfo> GetRansomedFileCount(string path)
+        {
+            DirectoryInfo d = new DirectoryInfo(path);
+            FileInfo[] Files = d.GetFiles("*");
+
+            List<FileInfo> RansomwareFiles = new List<FileInfo>();
+
+            int fileCount = 0;
+
+            foreach (FileInfo file in Files)
+            {
+            
+                if(RandomwareFileList.fileExtensions.Contains(file.Extension))
+                {
+                    RansomwareFiles.Add(file);
+                }
+                
+            }
+
+            return RansomwareFiles;
+        }
+
+
        
 
         public FileInfo[] GetTXTFileCount (string path)
@@ -90,9 +115,13 @@ namespace CashCat
         public void LockTXTFile(FileInfo file)
         {
             string oldfilename = file.Name;
-            string newfilename = (file.Name).Replace(".txt", ".locky");
+
+
+            string newExtension = RandomwareFileList.GetRandomFileExtension();
+
+            string newfilename = (file.Name).Replace(".txt", newExtension);
             string oldfileExtension = file.Extension;
-            string newfilefullname = (file.FullName).Replace(".txt", ".locky");
+            string newfilefullname = (file.FullName).Replace(".txt", newExtension);
 
             try
             {
@@ -104,37 +133,14 @@ namespace CashCat
             }
         }
 
-        public void LockTXTFiles(string path)
-        {
-            DirectoryInfo d = new DirectoryInfo(path);
-            FileInfo[] Files = d.GetFiles("*.txt"); //Getting Txt files
-            
-            foreach (FileInfo file in Files)
-            {
-                //Console.WriteLine(file.Name);
-                string oldfilename = file.Name;
-                string newfilename = (file.Name).Replace(".txt", ".locky");
-                string oldfileExtension = file.Extension;
-                string newfilefullname = (file.FullName).Replace(".txt", ".locky");
 
-                try
-                {
-                    System.IO.File.Move(file.Name, newfilename);
-                }
-                catch
-                {
-                    //can't touch this
-                }
-                
-
-            }
-        }
-
-        public void UnlockLockyFile(FileInfo file)
+        public void UnlockRansomwareFile(FileInfo file)
         {
             //Console.WriteLine(file.Name);
-            string newfilename = (file.Name).Replace(".locky", ".txt");
-            string newfilefullname = (file.FullName).Replace(".locky", ".txt");
+              
+          
+            string newfilename = (file.Name).Replace(file.Extension, ".txt");
+            // string newfilefullname = (file.FullName).Replace(".locky", ".txt");
             try
             {
                 System.IO.File.Move(file.Name, newfilename);
@@ -145,27 +151,6 @@ namespace CashCat
             }
         }
 
-        public void UnlockLockyFiles(string path)
-        {
-            DirectoryInfo d = new DirectoryInfo(path);
-            FileInfo[] Files = d.GetFiles("*.locky"); //Getting locky files
-            
-            foreach (FileInfo file in Files)
-            {
-                //Console.WriteLine(file.Name);
-                string newfilename = (file.Name).Replace(".locky", ".txt");
-                string newfilefullname = (file.FullName).Replace(".locky", ".txt");
-                try
-                {
-                    System.IO.File.Move(file.Name, newfilename);
-                }
-                catch
-                {
-                    //can't touch this
-                }
-
-            }
-        }
 
     }
 }

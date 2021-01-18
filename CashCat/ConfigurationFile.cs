@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +15,9 @@ namespace CashCat
             
 
         // Get Current Config file // return object
-        public ConfigurationFile ConfigurationFileSetup(string path)
+        //public ConfigurationFile ConfigurationFileSetup(string path)
+        
+        public void ConfigurationFileSetup(string path)
         {
             string jsonPath = path + "\\CashCat.json";
             // read JSON directly from a file
@@ -26,9 +27,9 @@ namespace CashCat
                 {
                     string json = file.ReadToEnd();
 
-                    ConfigurationFile CurrentConfig = JsonConvert.DeserializeObject<ConfigurationFile>(json);
+                    //ConfigurationFile CurrentConfig = JsonConvert.DeserializeObject<ConfigurationFile>(json);
 
-                    return CurrentConfig;
+                    //return CurrentConfig;
 
                 }
 
@@ -36,7 +37,7 @@ namespace CashCat
             catch
             {
                 Console.WriteLine("Error Loading JSON Config");
-                return null;
+                //return null;
             }
 
 
