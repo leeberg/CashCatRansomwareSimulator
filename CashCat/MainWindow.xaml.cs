@@ -56,6 +56,11 @@ namespace CashCat
 
             InitializeComponent();
 
+
+            //Time SEtup
+            txtblk_fileLostTime.Text = lockTime.ToString();
+            txtblk_paymentRaiseTime.Text = priceTime.ToString();
+
             System.Windows.Threading.DispatcherTimer CountDownTimer = new System.Windows.Threading.DispatcherTimer();
             CountDownTimer.Tick += new EventHandler(dispatcherTimer_Tick);
             CountDownTimer.Interval = new TimeSpan(0, 0, 1);
@@ -120,12 +125,9 @@ namespace CashCat
 
 
 
-            //Time SEtup
-
 
             //DateTime lockTime = DateTime.Now.AddDays(5);
-            txtblk_fileLostTime.Text = lockTime.ToString();
-            txtblk_paymentRaiseTime.Text = priceTime.ToString();
+
 
             //DateTime.Now.ToString("dd HH:mm:ss")
 

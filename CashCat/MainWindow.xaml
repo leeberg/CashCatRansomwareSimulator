@@ -42,7 +42,7 @@
 
 
         <Rectangle Name="rect_pricetime" HorizontalAlignment="Left" Height="100" Margin="17,189,0,0" Stroke="White" VerticalAlignment="Top" Width="200" Grid.ColumnSpan="2"/>
-        <TextBlock Name="txtblk_paymentRaiseHeader" HorizontalAlignment="Center" Margin="17,190,86,0" TextAlignment="Center" TextWrapping="Wrap" Text="Payment Price increases on" VerticalAlignment="Top" Foreground="#FFFFFA00" FontWeight="Bold" Width="200" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"/>
+        <TextBlock Name="txtblk_paymentRaiseHeader" HorizontalAlignment="Center" Margin="17,190,86,0" TextAlignment="Center" TextWrapping="Wrap" Text="Payment price increases on" VerticalAlignment="Top" Foreground="#FFFFFA00" FontWeight="Bold" Width="200" Grid.Column="0" Grid.ColumnSpan="2" FontSize="14"/>
         <TextBlock Name="txtblk_paymentRaiseTime" HorizontalAlignment="Center" Margin="19,209,84,0" TextAlignment="Center" TextWrapping="Wrap" Text="TimeLostStamp" VerticalAlignment="Top" Foreground="#FFFFFF" Width="200" Grid.Column="0" Grid.ColumnSpan="2"/>
         <TextBlock Name="txtblk_paymentRaiseLeftLabel" HorizontalAlignment="Center" Margin="19,246,84,0" TextAlignment="Center" TextWrapping="Wrap" Text="Time Left" VerticalAlignment="Top" Foreground="#FFFFFF" Width="200" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold"/>
         <TextBlock Name="txtblk_paymentRaiseCountDown" HorizontalAlignment="Center" Margin="19,267,84,0" TextAlignment="Center" TextWrapping="Wrap" Text="05:20:04:50" VerticalAlignment="Top" Foreground="#FFFFFF" Width="200"  Grid.Column="0" Grid.ColumnSpan="2" FontFamily="Consolas" Height="22" FontSize="18"/>
