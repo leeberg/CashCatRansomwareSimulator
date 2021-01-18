@@ -18,7 +18,7 @@
         </Grid.RowDefinitions>
 
         <Image Name="CashCatBackground" Visibility="Collapsed" HorizontalAlignment="Left" Height="609" Margin="0,0,-1,-67" VerticalAlignment="Top" Width="822" Source="cashcat.jpg" Grid.ColumnSpan="3"/>
-        <Image Name="LockerIcon" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="136" Source="font-awesome_4-7-0_lock_100_0_ffffff_none.png" Margin="0,26,0,0" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
+        <Image Name="LockerIcon" HorizontalAlignment="Left" Height="136" VerticalAlignment="Top" Width="136" Source="font-awesome_4-7-0_lock_100_0_ffffff_none.png" Margin="5,24,0,0" Grid.Column="1" RenderTransformOrigin="0.5,0.5">
             <Image.RenderTransform>
                 <RotateTransform/>
             </Image.RenderTransform>
