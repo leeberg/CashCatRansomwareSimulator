@@ -32,3 +32,4 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 + ~~Add Webhook Support for Canary like feature~~
 + ~~Enable Optional Easter Egg Cash Cat Mode~~
 + ~~Make the UI more ransomware-ey~~
++ Re-Implement extra configuration features without the need for dependency dlls
