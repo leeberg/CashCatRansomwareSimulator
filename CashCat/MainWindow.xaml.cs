@@ -38,6 +38,7 @@ namespace CashCat
         private string completedMessage = "Your important files are now encrypted!" + System.Environment.NewLine + System.Environment.NewLine + "To decrypt files you need to obtain the private key. The Single copy of the private key which allow you to decrypt the files is on a secret server on the internet dark web. The server will destroy the key after a time specified in this window." + System.Environment.NewLine + System.Environment.NewLine + "To obtain the private key for this computer, you need dot pay 300 USD / 300 EUR similar amount in other currency.";
         private string inProgressDecryptingMessage = "Your important files are being decrypted!" + System.Environment.NewLine + System.Environment.NewLine + "Congratulations! Your files are being unlocked using the unique public RSA-4096 generated for this computer.";
         private string decryptedMessage = "Your important files are now decrypted!" + System.Environment.NewLine + System.Environment.NewLine + "Thank You for being a great customer.";
+        private string decryptedHeaderText = "Decrypted... have a nice day!";
 
         private ImageSource LockIconSource = new BitmapImage(new Uri(@"font-awesome_4-7-0_lock_100_0_ffffff_none.png", UriKind.Relative));
         private ImageSource UnLockIconSource = new BitmapImage(new Uri(@"font-awesome_4-7-0_unlock_100_0_ffffff_none.png", UriKind.Relative));
@@ -55,6 +56,9 @@ namespace CashCat
 
 
             InitializeComponent();
+
+
+            ShowHideCountDowns(false);
 
 
             //Time SEtup
@@ -124,14 +128,6 @@ namespace CashCat
             }
 
 
-
-
-            //DateTime lockTime = DateTime.Now.AddDays(5);
-
-
-            //DateTime.Now.ToString("dd HH:mm:ss")
-
-
         }
 
         private void dispatcherTimer_Tick(object sender, EventArgs e)
@@ -159,62 +155,10 @@ namespace CashCat
         private void Window_ContentRendered(object sender, EventArgs e)
         {
 
+            ShowHideCountDowns(false);
+            InitialLoading();
 
-            fileOperations.WriteLog("Starting File Rename Operations!");
-            //lock it Up!
-
-            //TODO Clean up
-            Dispatcher.Invoke(new Action(() =>
-            {
-                SetIconRotation(LockerIcon, 0);
-                lblLockingFile.Content = "Scanning for Files";
-                txtbox_Instructions.Text = inProgressMessage;
-                rectInstructionsBackground.Height = 335;
-                Height = 455;
-            }), DispatcherPriority.ContextIdle);
-
-            filesToEncrypt = fileOperations.GetTXTFileCount(currentPath);
-            fileOperations.WriteLog("Found: " + filesToEncrypt.Count() + " to Encrypt!");
-
-            if (filesToEncrypt.Count() != 0)
-            {
-
-                string newExtension = ransomwareDefinition.GetRandomFileExtension();
-
-                btn_send.Visibility = Visibility.Hidden;
-                txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
-                encryptionInProgress = true;
-                foreach (FileInfo file in filesToEncrypt)
-                {
-                    FileInfo fileToEncrypt = file;
-                    fileOperations.WriteLog("Encrypting: " + file.Name.ToString() + "!");
-
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-                        RotateIcon(LockerIcon, 5);
-                        lblLockingFile.Content = ("Encrypting: " + file.Name);
-                    }), DispatcherPriority.ContextIdle);
-
-                    fileOperations.LockTXTFile(fileToEncrypt, newExtension);
-
-                }
-            }
-
-            encryptionInProgress = false;
-            fileOperations.WriteLog("File Rename Operations COMPLETED!");
-
-            Dispatcher.Invoke(new Action(() =>
-            {
-                SetIconRotation(LockerIcon, 0);
-                lblLockingFile.Content = "";
-                txtbox_Instructions.Text = completedMessage;
-                btn_send.Visibility = Visibility.Visible;
-                txtbox_Bitcoingaddess.Visibility = Visibility.Visible;
-                rectInstructionsBackground.Height = 445;
-                Height = 575;
-            }), DispatcherPriority.ContextIdle);
         }
-
 
 
         //TODO - Spin on Timer Tick.
@@ -231,6 +175,130 @@ namespace CashCat
         }
 
 
+        private void InitialLoading()
+        {
+            fileOperations.WriteLog("Starting File Rename Operations!");
+
+            Execute_EncryptionOperations();
+
+            ShowHideCountDowns(true);
+
+            //Restore Full Size
+            Dispatcher.Invoke(new Action(() =>
+            {
+                    SetIconRotation(LockerIcon, 0);
+                    txtBoxLockingFile.Text = "";
+                    txtbox_Instructions.Text = completedMessage;
+                    btn_send.Visibility = Visibility.Visible;
+                    txtbox_Bitcoingaddess.Visibility = Visibility.Visible;
+                    rectInstructionsBackground.Height = 445;
+                    Height = 575;
+
+            }), DispatcherPriority.ContextIdle);
+            
+        }
+
+        private void Execute_EncryptionOperations()
+        {
+            Dispatcher.Invoke(new Action(() =>
+            {
+                SetIconRotation(LockerIcon, 0);
+                txtBoxLockingFile.Text = "Scanning for Files";
+                txtbox_Instructions.Text = inProgressMessage;
+                rectInstructionsBackground.Height = 335;
+                Height = 455;
+            }), DispatcherPriority.ContextIdle);
+
+            filesToEncrypt = fileOperations.GetTXTFileCount(currentPath);
+            fileOperations.WriteLog("Found: " + filesToEncrypt.Count() + " to Encrypt!");
+
+            if (filesToEncrypt.Count() != 0)
+            {
+
+                //Get a new extension for this run
+                string newExtension = ransomwareDefinition.GetRandomFileExtension();
+
+                btn_send.Visibility = Visibility.Hidden;
+                txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
+                txtbox_Instructions.Height = 280;
+
+                encryptionInProgress = true;
+
+                foreach (FileInfo file in filesToEncrypt)
+                {
+                    FileInfo fileToEncrypt = file;
+                    fileOperations.WriteLog("Encrypting: " + file.Name.ToString() + "!");
+
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        RotateIcon(LockerIcon, 5);
+                        txtBoxLockingFile.Text = ("Encrypting: " + System.Environment.NewLine + file.Name);
+
+                    }), DispatcherPriority.ContextIdle);
+
+
+                    fileOperations.LockTXTFile(fileToEncrypt, newExtension);
+                    Thread.Sleep(50);
+
+                }
+            }
+
+            encryptionInProgress = false;
+
+            fileOperations.WriteLog("File Rename Operations COMPLETED!");
+        }
+
+        private void Execute_DecryptionOperations()
+        {
+            ShowHideCountDowns(false);
+
+            filesToDecrypt = fileOperations.GetRansomedFileCount(currentPath);   
+
+            if (filesToDecrypt.Count() != 0)
+            {
+
+                Dispatcher.Invoke(new Action(() =>
+                {
+                    SetIconRotation(LockerIcon, 0);
+                    rectInstructionsBackground.Height = 335;
+                    Height = 455;
+                    btn_send.Visibility = Visibility.Hidden;
+                    txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
+                    txtbox_Instructions.Text = inProgressDecryptingMessage;
+                }), DispatcherPriority.ContextIdle);
+
+                encryptionInProgress = true;
+
+                foreach (FileInfo file in filesToDecrypt)
+                {
+                    FileInfo fileToDEcrypt = file;
+                    fileOperations.WriteLog("Decrypting: " + file.Name.ToString() + "!");
+
+                    Dispatcher.Invoke(new Action(() =>
+                    {
+                        LockerIcon.Source = UnLockIconSource;
+                        RotateIcon(LockerIcon, -5);
+                        txtBoxLockingFile.Text = ("Decrypting: " + System.Environment.NewLine + file.Name);
+
+                    }), DispatcherPriority.ContextIdle);
+
+                    fileOperations.UnlockRansomwareFile(fileToDEcrypt);
+
+                }
+            }
+
+            Dispatcher.Invoke(new Action(() =>
+            {
+                SetIconRotation(LockerIcon, 0);
+                txtBoxLockingFile.Text = "";
+                txtbox_Instructions.Text = decryptedMessage;
+                lblMainLabel.Content = decryptedHeaderText;
+                btn_send.Visibility = Visibility.Hidden;
+                txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
+            }), DispatcherPriority.ContextIdle);
+
+            fileOperations.WriteLog("Unlock Rename Operations Completed!");
+        }
 
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -242,69 +310,7 @@ namespace CashCat
                 fileOperations.WriteLog("Starting Unlock Rename Operations!");
                 MessageBox.Show("Unlocked! Thanks! Your files will now be decrypted", "You did it correct", MessageBoxButton.OK);
 
-                filesToDecrypt = fileOperations.GetRansomedFileCount(currentPath);
-                //fileOperations.WriteLog("Found: " + filesToDecrypt.Count() + " to DeCrypt!");            
-
-                if (filesToDecrypt.Count() != 0)
-                {
-
-                    Dispatcher.Invoke(new Action(() =>
-                    {
-                        SetIconRotation(LockerIcon, 0);
-                        rectInstructionsBackground.Height = 335;
-                        Height = 455;
-                        btn_send.Visibility = Visibility.Hidden;
-                        txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
-                        txtbox_Instructions.Text = inProgressDecryptingMessage;
-                    }), DispatcherPriority.ContextIdle);
-
-
-                    encryptionInProgress = true;
-                    foreach (FileInfo file in filesToDecrypt)
-                    {
-                        FileInfo fileToDEcrypt = file;
-                        fileOperations.WriteLog("Decrypting: " + file.Name.ToString() + "!");
-
-                        Dispatcher.Invoke(new Action(() =>
-                        {
-                            LockerIcon.Source = UnLockIconSource;
-                            RotateIcon(LockerIcon, -5);
-                            lblLockingFile.Content = ("Decrypting: " + file.Name);
-
-                        }), DispatcherPriority.ContextIdle);
-
-                        fileOperations.UnlockRansomwareFile(fileToDEcrypt);
-
-                    }
-                }
-
-                Dispatcher.Invoke(new Action(() =>
-                {
-                    SetIconRotation(LockerIcon, 0);
-                    lblLockingFile.Content = "";
-                    txtbox_Instructions.Text = decryptedMessage;
-                    btn_send.Visibility = Visibility.Hidden;
-                    txtbox_Bitcoingaddess.Visibility = Visibility.Hidden;
-                    rectInstructionsBackground.Height = 345;
-                    Height = 455;
-                }), DispatcherPriority.ContextIdle);
-
-                fileOperations.WriteLog("Unlock Rename Operations Completed!");
-
-
-                rect_losttime.Visibility = Visibility.Hidden;
-                rect_pricetime.Visibility = Visibility.Hidden;
-
-                txtblk_paymentRaiseCountDown.Visibility = Visibility.Hidden;
-                txtblk_paymentRaiseHeader.Visibility = Visibility.Hidden;
-                txtblk_paymentRaiseTime.Visibility = Visibility.Hidden;
-                txtblk_paymentRaiseLeftLabel.Visibility = Visibility.Hidden;
-
-                txtblk_fileLostCountDown.Visibility = Visibility.Hidden;
-                txtblk_fileLostHeader.Visibility = Visibility.Hidden;
-                txtblk_fileLostLeftLabel.Visibility = Visibility.Hidden;
-                txtblk_fileLostTime.Visibility = Visibility.Hidden;
-
+                Execute_DecryptionOperations();
 
             }
             else
@@ -327,12 +333,47 @@ namespace CashCat
 
         private void RichTextBox_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            System.Diagnostics.Process.Start("https://github.com/leeberg/CashCatRansomwareSimulator");
+            Process.Start("https://github.com/leeberg/CashCatRansomwareSimulator");
         }
 
         private void Run_MouseDown(object sender, MouseButtonEventArgs e)
         {
             Process.Start("https://github.com/leeberg/CashCatRansomwareSimulator");
+        }
+
+
+        private void ShowHideCountDowns(bool state)
+        {
+            if(state == true)
+            {
+                rect_losttime.Visibility = Visibility.Visible;
+                rect_pricetime.Visibility = Visibility.Visible;
+
+                txtblk_paymentRaiseCountDown.Visibility = Visibility.Visible;
+                txtblk_paymentRaiseHeader.Visibility = Visibility.Visible;
+                txtblk_paymentRaiseTime.Visibility = Visibility.Visible;
+                txtblk_paymentRaiseLeftLabel.Visibility = Visibility.Visible;
+
+                txtblk_fileLostCountDown.Visibility = Visibility.Visible;
+                txtblk_fileLostHeader.Visibility = Visibility.Visible;
+                txtblk_fileLostLeftLabel.Visibility = Visibility.Visible;
+                txtblk_fileLostTime.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                rect_losttime.Visibility = Visibility.Hidden;
+                rect_pricetime.Visibility = Visibility.Hidden;
+
+                txtblk_paymentRaiseCountDown.Visibility = Visibility.Hidden;
+                txtblk_paymentRaiseHeader.Visibility = Visibility.Hidden;
+                txtblk_paymentRaiseTime.Visibility = Visibility.Hidden;
+                txtblk_paymentRaiseLeftLabel.Visibility = Visibility.Hidden;
+
+                txtblk_fileLostCountDown.Visibility = Visibility.Hidden;
+                txtblk_fileLostHeader.Visibility = Visibility.Hidden;
+                txtblk_fileLostLeftLabel.Visibility = Visibility.Hidden;
+                txtblk_fileLostTime.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

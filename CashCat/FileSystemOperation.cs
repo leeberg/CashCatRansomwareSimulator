@@ -91,7 +91,10 @@ namespace CashCat
 
             foreach (FileInfo file in Files)
             {
-            
+
+                //Console.WriteLine("Checking: " + file.Extension);
+
+
                 if(RandomwareFileList.fileExtensions.Contains(file.Extension))
                 {
                     RansomwareFiles.Add(file);
