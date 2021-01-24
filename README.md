@@ -14,10 +14,10 @@ Cashcat from: http://cashcats.biz/
 THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION OF RANSOMWARE! ALL IT DOES IS RENAME files with the extension of .TXT to a ransomware extension to test ransomwware tools. Nothing gets Encrypted!
 
 ## Usage
-1. Build/Download CashCat.exe 
+1. Build/Download CashCat.exe - **NEVER PLACE IN A PRODUCTION ENVIRONMENT**
 2. Place CashCat.exe in a directory with some .txt files in the same directory.
 3. Run Cashcast.exe.
-4. All .TXT files located in the same directory as Cashcat.exe will be renamed to .Locky - a common ransomware extension. No files are ACTUALLY encrypted - they are simply renamed.
+4. All .TXT files located in the same directory as Cashcat.exe will be renamed to a common ransomware extension. No files are ACTUALLY encrypted - they are simply renamed.
 5. Enter the code 123456789 to rename all .LOCKY files to .TXT (this effectively UNLOCKS your files / resets your demo)
 
 ## Demo
@@ -25,7 +25,7 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 
 ## Requirements
 + Tested on Windows 7, 10, Server 2012R2, 2016+ 
-+ Requires at least .NET 4.6.1
++ Requires: .NET 4.7.2
 
 ## Todo
 + ~~UNC path support (works on my machine)~~
