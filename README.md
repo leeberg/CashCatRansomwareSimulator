@@ -25,4 +25,5 @@ THIS IS **NOT** REAL RANSOMWARE! IT LITERALLY DOES NOT MATCH ANY REAL DEFINITION
 + Requires: .NET 4.7.2
 
 ## Todo
-+ Re-Implement extra configuration features without the need for dependency dlls
+* Re-Implement extra configuration features without the need for dependency dlls
+* "Canary" functionality
