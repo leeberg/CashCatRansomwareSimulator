@@ -1,4 +1,4 @@
-Cashcat : The "Ransomware" Simulator
+Cashcat : The "Ransomware" Simulator 🤑🐈
 ==================
 A simple standalone "ransomware-like" simulator for Windows that will rename .TXT files to a known ransomware extension to **simulate** ransomware behavior for demos and testing various file monitoring tools and response systems. 
 
